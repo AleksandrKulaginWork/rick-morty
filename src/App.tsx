@@ -2,14 +2,14 @@ import React from 'react';
 import { Layout } from './components/Layout/index';
 import './App.css';
 import { Search } from './components/Search/index';
-import { Results } from './components/Results/index';
+import { ListOfCharacters } from './components/ListOfCharacters/index';
 import { Party } from './components/Party/index';
 
 const App = () => {
   return (
     <Layout>
-      <Search name='text' type='text' placeholder='Cartoon character name' />
-      <Results />
+      <Search name='text' type='text' />
+      <ListOfCharacters />
       <Party />
     </Layout>
   );

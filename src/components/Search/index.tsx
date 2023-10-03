@@ -3,11 +3,11 @@ import { SearchProps } from "./interface";
 import { Input } from "./style";
 
 
-export const Search = ({ name, type, placeholder }: SearchProps) => {
+export const Search = ({ name, type }: SearchProps) => {
 
     const [textState, setTextState] = useState('');
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTextState(e.target.value)
     }
 
@@ -16,7 +16,7 @@ export const Search = ({ name, type, placeholder }: SearchProps) => {
             name={name}
             type={type} 
             value={textState}
-            placeholder={placeholder}
+            placeholder='Cartoon character name'
             onChange={handleChange}/> 
     )
 }

@@ -1,5 +1,5 @@
 export interface CardProps {
-    name?: string,
-    imageUrl?: string,
+    name: string,
+    imageUrl: string,
     onClick?: () => void
 }
