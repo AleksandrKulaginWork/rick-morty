@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const CardResultsContent = styled.div`
-    background: black;
     width: 180px;
     height: 220px;
     position: relative;
@@ -24,3 +23,9 @@ export const ButtonClose = styled.div`
         opacity: 100%;
     }
 ` 
+
+export const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`

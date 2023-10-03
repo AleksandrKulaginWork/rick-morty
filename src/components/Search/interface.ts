@@ -3,3 +3,10 @@ export interface SearchProps {
     type: string,
     // onChange: (value:string) => void;
 }
+
+export interface Character {
+    id: string,
+    name: string,
+    image: string
+}
+

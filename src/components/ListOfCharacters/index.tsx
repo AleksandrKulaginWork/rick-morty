@@ -1,16 +1,12 @@
 import React from "react";
 import { ResultContent } from "./style";
-import { Card } from '../Card/index';
+// import { Card } from '../Card/index';
+import { ListOfCharactersProps } from "./interface";
 
-export const ListOfCharacters = () => {
+export const ListOfCharacters = ({children}: ListOfCharactersProps) => {
     return (
         <ResultContent>
-            <Card name={'rick'} imageUrl="#" />
-            <Card name={'rick'} imageUrl="#" />
-            <Card name={'rick'} imageUrl="#" />
-            <Card name={'rick'} imageUrl="#" />
-            <Card name={'rick'} imageUrl="#" />
-            <Card name={'rick'} imageUrl="#" />
+            {children}
         </ResultContent>
     )
 }
