@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const PaginationContent = styled.div`
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+`
+
 export const Button = styled.button`
     display: flex;
     align-items: center;
@@ -10,13 +18,16 @@ export const Button = styled.button`
     border-radius: 10px;
     border: none;
 
-    &:hover{
+    &:not(:disabled):hover{
         background: greenyellow;
     }
 `
-export const PaginationContent = styled.div`
-    display: flex;
-    gap: 30px;
-    justify-content: center;
+
+export const Span = styled.span`
+    font-weight: 700;
+    font-size: 18px;
 `
 
+export const Paragraph = styled.span`
+    padding: 0;
+`

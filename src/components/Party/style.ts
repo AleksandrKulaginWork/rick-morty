@@ -13,6 +13,7 @@ export const Title = styled.h2`
     font-size: 30px;
     line-height: 35px;
     text-transform: uppercase;
+    margin-top: 0;
     margin-bottom: 20px;
 `
 
