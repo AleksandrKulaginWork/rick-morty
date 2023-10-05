@@ -1,14 +1,22 @@
 import React from "react";
 import { PartyContent, Title, BodyCards } from "./style";
 import { CardParty } from './../CardParty/index';
+import { PartyProps } from "./interface";
 
-export const Party = () => {
+export const Party = ({ selectCards }: PartyProps) => {
+
+
     return (
         <PartyContent>
-            <Title>Party</Title>
+            {selectCards.length > 0 && <Title>Party</Title>}
             <BodyCards>
-                <CardParty image={'url'} title='Rick'/>
-                <CardParty image={'url'} title='Morty'/>
+
+                {selectCards.map((cardInfo) => (
+                    <CardParty key={cardInfo.name} image={cardInfo.image} title={cardInfo.name} />
+                ))}
+
+                {/* <CardParty image={'url'} title='Rick'/>
+                <CardParty image={'url'} title='Morty'/> */}
             </BodyCards>
         </PartyContent>
     )

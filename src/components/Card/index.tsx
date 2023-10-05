@@ -3,11 +3,11 @@ import { CardProps } from "./interface";
 import { AiOutlineClose as IconClose } from 'react-icons/ai';
 import { ButtonClose, CardResultsContent, Image } from "./style";
 
-export const Card = ({ imageUrl, name, onDelete }: CardProps) => {
+export const Card = ({ imageUrl, name, onCardDelete, onCardClick }: CardProps) => {
 
     return (
-        <CardResultsContent>
-            <ButtonClose onClick={()=> onDelete()}>
+        <CardResultsContent onClick={()=> onCardClick()}>
+            <ButtonClose onClick={()=> onCardDelete()}>
                 <IconClose size={15} />
             </ButtonClose>
             <Image src={imageUrl} alt={name} />

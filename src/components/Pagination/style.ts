@@ -29,5 +29,6 @@ export const Span = styled.span`
 `
 
 export const Paragraph = styled.span`
+    color: greenyellow;
     padding: 0;
 `
