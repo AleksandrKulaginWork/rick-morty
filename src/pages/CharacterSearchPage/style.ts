@@ -10,6 +10,9 @@ export const Input = styled.input `
     margin-bottom: 30px;
     opacity: 0.5;
     transition: 0.5s ease;
+    position: sticky;
+    top: 0;
+    z-index: 10;
     
         &::placeholder{
             text-transform: none; 

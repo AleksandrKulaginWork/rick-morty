@@ -1,15 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from 'react';
 import { Layout } from './components/Layout/index';
+import { CharacterInfoPage } from "./pages/CharacterInfoPage";
+import { CharacterSearchPage } from './pages/CharacterSearchPage';
 import './App.css';
-import { Search } from './components/Search/index';
-// import { ListOfCharacters } from './components/ListOfCharacters/index';
-// import { Party } from './components/Party/index';
 
 const App = () => {
   return (
-    <Layout>
-      <Search name='text' type='text' />
-    </Layout>
+    <Router>
+      <Layout>
+      <Routes>
+          <Route path='/' element={<CharacterSearchPage />} />
+          <Route path='/character-info' element={<CharacterInfoPage />} />
+      </Routes>
+      </Layout>
+    </Router>
   );
 }
 
