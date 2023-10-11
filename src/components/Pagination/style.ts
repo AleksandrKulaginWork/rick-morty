@@ -17,6 +17,9 @@ export const Button = styled.button`
     padding: 7px 10px;
     border-radius: 10px;
     border: none;
+    -webkit-box-shadow: 15px 15px 37px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 15px 15px 37px 0px rgba(0,0,0,0.75);
+    box-shadow: 15px 15px 37px 0px rgba(0,0,0,0.75);
 
     &:not(:disabled):hover{
         background: greenyellow;

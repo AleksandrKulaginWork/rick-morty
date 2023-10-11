@@ -14,9 +14,7 @@ export const Party = ({ selectCards }: PartyProps) => {
                 {selectCards.map((cardInfo) => (
                     <CardParty key={cardInfo.name} image={cardInfo.image} title={cardInfo.name} />
                 ))}
-
-                {/* <CardParty image={'url'} title='Rick'/>
-                <CardParty image={'url'} title='Morty'/> */}
+                
             </BodyCards>
         </PartyContent>
     )

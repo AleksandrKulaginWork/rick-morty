@@ -1,115 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Character } from "./interface";
-import { Input } from "./style";
-import { gql, useLazyQuery } from '@apollo/client';
+import { Input, Image } from "./style";
 import { Card } from "../../components/Card";
 import { ListOfCharacters } from "../../components/ListOfCharacters";
 import { Pagination } from '../../components/Pagination';
 import { Party } from '../../components/Party';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+// import { RootState } from "../../store/store";
+import { useCharactersDispatch } from "./dispatch";
+import { CharactersState } from "../../store/characterSlice";
+import Logo from '../../assets/Logo.png';
 
-const FEED_SEARCH_QUERY = gql`
-    query FeedSearchQuery( $page: Int, $name: String!) {
-        characters( page: $page, filter: { name: $name }) {
-            info {
-                count
-                pages
-                next
-                prev
-            }
-            results {
-                id
-                name
-                status
-                species
-                type
-                gender
-                image
-                created
-            }
-        }
-    } 
-`;
 
 export const CharacterSearchPage = () => {
 
-    const [findByName, { data }] = useLazyQuery(FEED_SEARCH_QUERY);
-    const navigate = useNavigate();
+    const { searchCharacter, currentPage, cardsCharacters, selectCards, deleteCards } = useSelector((state: CharactersState) => state.characters);
 
-    const [textState, setTextState] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [cardsChatacters, setCardsChatacters] = useState<Character[]>([]);
-    const [selectCards, setSelectCards] = useState<{name: string; image: string;}[]>([])
+    const { handleChange, handlePageChange, handleDeleteCard, handleAddCardToParty, handleButtonClick, data } = useCharactersDispatch();
     
-    useEffect(() => {
-        const saveCardsCharacters = localStorage.getItem('cardsCharacters');
-        if(saveCardsCharacters) {
-            const cardsCharacters = JSON.parse(saveCardsCharacters);
-            setCardsChatacters(cardsCharacters);
-        } 
-        if (data?.characters?.results) {
-            setCardsChatacters(data.characters.results);
-            localStorage.setItem('cardsCharacters', JSON.stringify(data.characters.results));
-        }
-    }, [data]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const inputValue = e.target.value;
-        setTextState(inputValue);
-        if (inputValue.length > 2) {
-            findByName({
-                variables: { name: inputValue }
-            })
-        } 
-    }
-
-    const handlePageChange = (newPage: number) => {
-        setCurrentPage(newPage);
-        findByName({
-            variables: { name: textState, page: newPage },
-        });
-    };
-
-    const deleteCard = (id: string) => {
-        setCardsChatacters((cards) => cards.filter((card) => card.id !== id));
-    };
-    
-    const addCardToParty = (name: string, image: string) => {
-        const isNameAlreadySelected = selectCards.some((cardInfo) => cardInfo.name.includes('Rick') === name.includes('Rick') || cardInfo.name.includes('Morty') === name.includes('Morty'))
-
-            if(!isNameAlreadySelected) {
-                setSelectCards((selectCards) => {
-                    if(selectCards.length < 2) {
-                        return [...selectCards, {name, image}];
-                    }
-                    return selectCards;
-                })
-            }
-    }
-
-    const handleButtonClick = (character: Character) => {
-        localStorage.setItem('personResult', JSON.stringify(character));
-        navigate('/character-info')
-    }
-
     return (
         <>
+        <Image src={Logo}/>
             <Input
                 name='search'
                 type='text'
-                value={textState}
+                value={searchCharacter}
                 placeholder='Cartoon character name'
                 onChange={handleChange} />
 
             <ListOfCharacters>
-                {cardsChatacters.map((character: Character) => (
-                    <Card 
-                        key={character.id}
-                        name={character.name} 
-                        imageUrl={character.image}
-                        onCardDelete={() => deleteCard(character.id)}
-                        onCardClick={() => addCardToParty(character.name, character.image)}
-                        onButtonClick={() => handleButtonClick(character)} />
+                {cardsCharacters
+                    .filter((character: Character) => !deleteCards.includes(character.id))
+                    .map((character: Character) => (
+                <Card
+                    key={character.id}
+                    name={character.name}
+                    imageUrl={character.image}
+                    onCardDelete={() => handleDeleteCard(character.id)}
+                    onCardClick={() => handleAddCardToParty(character.name, character.image)}
+                    onButtonClick={() => handleButtonClick(character)} />
                 ))}
             </ListOfCharacters>
 
@@ -121,8 +50,8 @@ export const CharacterSearchPage = () => {
                 />
             )}
 
-            <Party 
-                selectCards={selectCards}/>
+            <Party
+                selectCards={selectCards} />
         </>
     )
 }

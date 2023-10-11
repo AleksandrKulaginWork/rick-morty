@@ -2,10 +2,14 @@ import React from "react";
 import { CardProps } from "./interface";
 import { AiOutlineClose as IconClose } from 'react-icons/ai';
 import { ButtonClose, CardResultsContent, Image, ButtonLink } from "./style";
-// import { useNavigate } from 'react-router-dom';
 import { FaInfo } from "react-icons/fa";
 
 export const Card = ({ imageUrl, name, onCardDelete, onCardClick, onButtonClick }: CardProps) => {
+
+    const handleButtonClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e.stopPropagation();
+        onButtonClick()
+    };
 
     return (
         <CardResultsContent onClick={() => onCardClick()}>
@@ -15,7 +19,7 @@ export const Card = ({ imageUrl, name, onCardDelete, onCardClick, onButtonClick 
 
             <Image src={imageUrl} alt={name} />
 
-            <ButtonLink onClick={() => onButtonClick()}>
+            <ButtonLink onClick={(e) => handleButtonClick(e)}>
                 <FaInfo size={15} color="black"/>
             </ButtonLink>
         </CardResultsContent>

@@ -3,18 +3,22 @@ import React from 'react';
 import { Layout } from './components/Layout/index';
 import { CharacterInfoPage } from "./pages/CharacterInfoPage";
 import { CharacterSearchPage } from './pages/CharacterSearchPage';
-import './App.css';
+import { Provider } from "react-redux";
+import { store } from './store/store'
+
 
 const App = () => {
   return (
-    <Router>
-      <Layout>
-      <Routes>
-          <Route path='/' element={<CharacterSearchPage />} />
-          <Route path='/character-info' element={<CharacterInfoPage />} />
-      </Routes>
-      </Layout>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<CharacterSearchPage />} />
+            <Route path='/character-info' element={<CharacterInfoPage />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </Provider>
   );
 }
 

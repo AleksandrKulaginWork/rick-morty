@@ -5,7 +5,7 @@ export const Input = styled.input `
     padding: 22px 27px;
     font-size: 30px;
     box-sizing: border-box;
-    border: 1px solid #A0A0A0;
+    border: 0px;
     text-transform: uppercase; 
     margin-bottom: 30px;
     opacity: 0.5;
@@ -13,6 +13,8 @@ export const Input = styled.input `
     position: sticky;
     top: 0;
     z-index: 10;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 49%, rgba(255,255,255,0) 100%);
     
         &::placeholder{
             text-transform: none; 
@@ -21,4 +23,8 @@ export const Input = styled.input `
             outline: none;
             opacity: 0.8;
 }
+`
+export const Image = styled.img`
+    max-width: 75%;
+    margin: 0 auto;
 `

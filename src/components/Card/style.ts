@@ -16,9 +16,8 @@ export const ButtonClose = styled.div`
     cursor: pointer;
     border: 1.5px solid black;
     &:hover {
-        background: greenyellow;
+        background: red;
         opacity: 100%;
-        transition: 0.3s ease;
     }
 `
 
