@@ -1,17 +1,24 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from 'react';
 import { Layout } from './components/Layout/index';
-import './App.css';
-import { Search } from './components/Search/index';
-import { ListOfCharacters } from './components/ListOfCharacters/index';
-import { Party } from './components/Party/index';
+import { CharacterInfoPage } from "./pages/CharacterInfoPage";
+import { CharacterSearchPage } from './pages/CharacterSearchPage';
+import { Provider } from "react-redux";
+import { store } from './store/store'
+
 
 const App = () => {
   return (
-    <Layout>
-      <Search name='text' type='text' />
-      <ListOfCharacters />
-      <Party />
-    </Layout>
+    <Provider store={store}>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<CharacterSearchPage />} />
+            <Route path='/character-info' element={<CharacterInfoPage />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </Provider>
   );
 }
 

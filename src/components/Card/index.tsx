@@ -1,17 +1,27 @@
-// import React, { useState } from "react";
 import React from "react";
 import { CardProps } from "./interface";
 import { AiOutlineClose as IconClose } from 'react-icons/ai';
-import { ButtonClose, CardResultsContent } from "./style";
+import { ButtonClose, CardResultsContent, Image, ButtonLink } from "./style";
+import { FaInfo } from "react-icons/fa";
 
-export const Card = ({ imageUrl, name, onClick }: CardProps) => {
+export const Card = ({ imageUrl, name, onCardDelete, onCardClick, onButtonClick }: CardProps) => {
+
+    const handleButtonClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e.stopPropagation();
+        onButtonClick()
+    };
 
     return (
-        <CardResultsContent>
-            <ButtonClose onClick={onClick}>
+        <CardResultsContent onClick={() => onCardClick()}>
+            <ButtonClose onClick={() => onCardDelete()}>
                 <IconClose size={15} />
             </ButtonClose>
-            <img src={imageUrl} alt={name} />
+
+            <Image src={imageUrl} alt={name} />
+
+            <ButtonLink onClick={(e) => handleButtonClick(e)}>
+                <FaInfo size={15} color="black"/>
+            </ButtonLink>
         </CardResultsContent>
     )
 }

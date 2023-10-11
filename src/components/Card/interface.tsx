@@ -1,5 +1,7 @@
 export interface CardProps {
     name: string,
     imageUrl: string,
-    onClick?: () => void
+    onCardDelete: () => void,
+    onCardClick: () => void,
+    onButtonClick: () => void,
 }
